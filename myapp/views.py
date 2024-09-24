@@ -15,3 +15,14 @@ class PartsViewSet(viewsets.ModelViewSet):
     def category(self, request):
         cats = Category.objects.all()
         return Response({'cats': [c.name for c in cats]})
+
+
+# class ClassSystemsTreeView(generics.GenericAPIView):
+#     queryset = ClassSystemsModel.objects.all()
+#     serializer_class = ClassSystemsTreeSerializer
+#
+#     def get(self, request):
+#         root_nodes = get_cached_trees(self.get_queryset())
+#         serializer = self.get_serializer(root_nodes, many=True)
+#         return Response(serializer.data)
+
