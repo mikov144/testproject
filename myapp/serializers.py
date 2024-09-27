@@ -1,20 +1,26 @@
 from rest_framework import serializers
-from .models import Parts
+from .models import Materials, Category
 
 
-class PartsSerializer(serializers.ModelSerializer):
+class MaterialsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Parts
+        model = Materials
         fields = '__all__'
 
 
-# class ClassSystemsTreeSerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name', 'code', 'parent']
+
+
+# class CategoryTreeSerializer(serializers.ModelSerializer):
 #     children = serializers.SerializerMethodField()
 #
-#     class Meta(ClassSystemsSerializer.Meta):
-#         model = ClassSystemsModel
+#     class Meta(CategorySerializer.Meta):
+#         model = Category
 #         fields = ['id', 'name', 'code', 'parent', 'children']
 #
 #     def get_children(self, obj):
 #         children = obj.get_children()
-#         return ClassSystemsTreeSerializer(children, many=True).data
+#         return CategoryTreeSerializer(children, many=True).data

@@ -3,26 +3,26 @@ from django.shortcuts import render
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .models import Parts, Category
-from .serializers import PartsSerializer
+from .models import Materials, Category
+from .serializers import MaterialsSerializer, CategorySerializer
 
 
-class PartsViewSet(viewsets.ModelViewSet):
-    queryset = Parts.objects.all()
-    serializer_class = PartsSerializer
-
-    @action(methods=['get'], detail=False)
-    def category(self, request):
-        cats = Category.objects.all()
-        return Response({'cats': [c.name for c in cats]})
+class MaterialsViewSet(viewsets.ModelViewSet):
+    queryset = Materials.objects.all()
+    serializer_class = MaterialsSerializer
 
 
-# class ClassSystemsTreeView(generics.GenericAPIView):
-#     queryset = ClassSystemsModel.objects.all()
-#     serializer_class = ClassSystemsTreeSerializer
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all().order_by('code')
+    serializer_class = CategorySerializer
+
+
+# class CategoryTreeView(generics.GenericAPIView):
+#     queryset = Category.objects.all().order_by('code')
+#     serializer_class = CategoryTreeSerializer
 #
 #     def get(self, request):
-#         root_nodes = get_cached_trees(self.get_queryset())
+#         root_nodes = get_children(self.get_queryset())
 #         serializer = self.get_serializer(root_nodes, many=True)
 #         return Response(serializer.data)
 
