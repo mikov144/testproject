@@ -1,5 +1,4 @@
 import pandas as pd
-from unicodedata import category
 from myapp.serializers import MaterialsSerializer, CategorySerializer
 
 data = pd.read_excel('Catalog_Testovoe.xlsx', engine='calamine', dtype=str).to_dict('records')
