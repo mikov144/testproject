@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'myapp.apps.MyappConfig',
     'rest_framework',
     'mptt',
+    'import_export',
 ]
 
 MIDDLEWARE = [
