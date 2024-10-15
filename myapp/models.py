@@ -15,6 +15,7 @@ class Materials(models.Model):
     def __str__(self):
         return self.name
 
+
 class Category(MPTTModel):
     name = models.CharField(max_length=100, verbose_name='Наименование категории')
     code = models.PositiveIntegerField(unique=True, verbose_name='Код категории')
@@ -24,6 +25,23 @@ class Category(MPTTModel):
         order_insertion_by = ['name']
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
+
+    def __str__(self):
+        return self.name
+
+
+class MaterialTest(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Наименование материала')
+    code = models.PositiveIntegerField(unique=True, verbose_name='Код материала')
+    price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name='Стоимость материала')
+
+    def __str__(self):
+        return self.name
+
+
+class CategoryTest(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Наименование категории')
+    code = models.PositiveIntegerField(unique=True, verbose_name='Код категории')
 
     def __str__(self):
         return self.name

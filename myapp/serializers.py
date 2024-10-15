@@ -17,7 +17,6 @@ class CategorySerializer(serializers.ModelSerializer):
 class CategoryTreeSerializer(serializers.ModelSerializer):
     children = serializers.SerializerMethodField()
     materials = MaterialsSerializer(many=True)
-    file = serializers.FileField()
 
     class Meta(CategorySerializer.Meta):
         model = Category
@@ -26,3 +25,7 @@ class CategoryTreeSerializer(serializers.ModelSerializer):
     def get_children(self, obj):
         children = obj.get_children()
         return CategoryTreeSerializer(children, many=True).data
+
+
+class ImportSerializer(serializers.Serializer):
+    file = serializers.FileField()
