@@ -1,5 +1,6 @@
 from django.urls import path, include
-from myapp.views import MaterialsViewSet, CategoryViewSet, CategoryTreeView, ImportModelAPIView
+from myapp.views import MaterialsViewSet, CategoryViewSet, CategoryTreeView
+from myapp.services import ImportModelAPIView
 from rest_framework import routers
 
 router = routers.DefaultRouter()
