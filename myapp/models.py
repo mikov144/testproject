@@ -42,6 +42,7 @@ class MaterialTest(models.Model):
 class CategoryTest(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование категории')
     code = models.PositiveIntegerField(unique=True, verbose_name='Код категории')
+    parent = models.CharField(max_length=100, default='null', verbose_name='Родительский элемент')
 
     def __str__(self):
         return self.name
