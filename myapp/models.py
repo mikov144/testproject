@@ -15,6 +15,7 @@ class Materials(models.Model):
     def __str__(self):
         return self.name
 
+
 class Category(MPTTModel):
     name = models.CharField(max_length=100, verbose_name='Наименование категории')
     code = models.PositiveIntegerField(unique=True, verbose_name='Код категории')
@@ -27,3 +28,4 @@ class Category(MPTTModel):
 
     def __str__(self):
         return self.name
+

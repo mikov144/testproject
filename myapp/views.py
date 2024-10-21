@@ -1,7 +1,5 @@
-# from django.core.serializers import serialize
 from mptt.utils import get_cached_trees
 from rest_framework import generics, viewsets
-# from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from .models import Materials, Category
 from .serializers import MaterialsSerializer, CategorySerializer, CategoryTreeSerializer
@@ -25,13 +23,3 @@ class CategoryTreeView(generics.GenericAPIView):
         root_nodes = get_cached_trees(self.get_queryset())
         serializer = self.get_serializer(root_nodes, many=True)
         return Response(serializer.data)
-
-# class AddExcell(generics.GenericAPIView):
-#     serializer_class = serializes.Serializer
-#     parser_classes = (MultiPartParser, FormParser)
-#
-#     def post(self, request):
-#         serializer = self.get_serializer(data=request.FILES)
-#         serializer.is_valid(raise_exception=True)
-#
-#         upload_excell(serializer.validated_data)
