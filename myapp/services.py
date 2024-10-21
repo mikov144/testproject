@@ -21,7 +21,7 @@ class ImportModelAPIView(APIView):
                 logging.error('Invalid serializer')
                 return Response({
                     'status': False,
-                    'message': 'Выберите правильный файл'
+                    'message': 'Неправильный формат файла. Пожалуйста, загрузите файл формата .xls или .xlsx.'
                 }, status=status.HTTP_400_BAD_REQUEST)
 
             excel_file = data.get('file')

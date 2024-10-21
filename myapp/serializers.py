@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Materials, Category
+import os
 
 
 class MaterialsSerializer(serializers.ModelSerializer):
@@ -29,3 +30,11 @@ class CategoryTreeSerializer(serializers.ModelSerializer):
 
 class ImportSerializer(serializers.Serializer):
     file = serializers.FileField()
+
+    def validate_file(self, value):
+        ext = os.path.splitext(value.name)[1]
+        valid_extensions = ['.xls', '.xlsx']
+        if ext.lower() not in valid_extensions:
+            raise serializers.ValidationError(
+                'Неправильный формат файла. Пожалуйста, загрузите файл формата .xls или .xlsx.')
+        return value
